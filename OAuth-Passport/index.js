@@ -1,3 +1,7 @@
+// FACEBOOK_ID = 1662863714238839
+// FACEBOOK_SECRET = 9d068476e114ec82dbbd49c5e2fe8de8
+// FACEBOOK_CALLBACK = http://localhost:3000/auth/facebook/callback
+
 const passport = require('passport');
 const express=require("express");
 const session = require('express-session');
@@ -5,7 +9,7 @@ const dotenv = require("dotenv");
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const app=express();
 
-dotenv.config({path:'/config.env'});
+dotenv.config({path:'./config.env'});
 
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
@@ -20,12 +24,12 @@ passport.use(new GoogleStrategy({
   The verify callback must call *cb* providing a user to complete authentication.)
    */
   (accessToken, refreshToken, profile, done) => { // done === cb (it is callback function)
-    // const option={
-    //   accessToken,
-    //   refreshToken,
-    //   profile 
-    // };
-    // console.log(option);
+    const option={
+      accessToken,
+      refreshToken,
+      profile 
+    };
+    console.log(option);
 
     // User is authenticated. You can save user information in your database.
 
@@ -102,5 +106,3 @@ app.listen(3000,()=>{
   console.log("running on port "+ 3000);
 }
 )
-
-
